@@ -18,6 +18,8 @@
     "/test/"
   ],
   "dependencies": {
+    "byutv-jsonp": "~1.2.0",
+    "dev-json": "michelschep/dev-json",
     "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
