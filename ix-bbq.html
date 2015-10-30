@@ -23,7 +23,7 @@
     },
 
     handleResponse: function(response) {
-      if (response.returnValue)
+      if (response.detail)
         this.set('answer', response.detail.data.ishetvandaagbarbecueweer);
       else
         this.set('answer', 'onbekend');
