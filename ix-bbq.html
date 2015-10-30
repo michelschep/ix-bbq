@@ -3,13 +3,9 @@
 
 <dom-module id="ix-bbq">
   <template>
-    <h1>go</h1>
     <byutv-jsonp auto url="http://api.ishetvandaagbarbecueweer.nl/json.php"
-    handle-as="json" last-response="{{answer1}}" debounce-duration="300"></byutv-jsonp>
-    <h1>answer</h1>
-    <p>[[answer1.data.ishetvandaagbarbecueweer]]</p>
+    handle-as="json" last-response="{{response}}" debounce-duration="300"></byutv-jsonp>
   </template>
-
 </dom-module>
 
 <script>
@@ -18,32 +14,28 @@
     is: 'ix-bbq',
 
     properties: {
-      // answer1: {
-      //   type: Object,
-      // },
       answer: {
         type: String,
-        //computed: 'computeAnswer(answer1)',
         value: function() {
-          return "default"
+          return "onbekend"
         },
         notify: true
+      },
+
+      debug: {
+        type: Boolean
       }
     },
 
     observers: [
-      '_lastResponseChanged(answer1)'
+      '_lastResponseChanged(response)'
     ],
 
-    _lastResponseChanged: function(answer2) {
-      console.log('set answer', answer2);
-      this.set('answer', answer2.data.ishetvandaagbarbecueweer);
-      console.log('answer!', this.answer);
-    }
+    _lastResponseChanged: function(response) {
+      if (this.debug)
+        console.log('response is: ',response);
 
-    // computeAnswer: function(answer2) {
-    //   console.log(answer2.data.ishetvandaagbarbecueweer);
-    //   return answer2.data.ishetvandaagbarbecueweer;
-    // }
+      this.set('answer', response.data.ishetvandaagbarbecueweer);
+    }
   });
 </script>
