@@ -3,8 +3,7 @@
 
 <dom-module id="ix-bbq">
   <template>
-    <byutv-jsonp auto url="http://api.ishetvandaagbarbecueweer.nl/json.php"
-    handle-as="json" last-response="{{response}}" debounce-duration="300"></byutv-jsonp>
+    <byutv-jsonp auto url="http://api.ishetvandaagbarbecueweer.nl/json.php" handle-as="json" on-response="handleResponse" debounce-duration="300"></byutv-jsonp>
   </template>
 </dom-module>
 
@@ -20,22 +19,14 @@
           return "onbekend"
         },
         notify: true
-      },
-
-      debug: {
-        type: Boolean
       }
     },
 
-    observers: [
-      '_lastResponseChanged(response)'
-    ],
-
-    _lastResponseChanged: function(response) {
-      if (this.debug)
-        console.log('response is: ',response);
-
-      this.set('answer', response.data.ishetvandaagbarbecueweer);
-    }
+    handleResponse: function(response) {
+      if (response.returnValue)
+        this.set('answer', response.detail.data.ishetvandaagbarbecueweer);
+      else
+        this.set('answer', 'onbekend');
+    },
   });
 </script>

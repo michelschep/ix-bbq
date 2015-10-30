@@ -1,20 +1,30 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>ix-bbq Demo</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../ix-bbq.html">
-    <link rel="import" href="../../dev-json/dev-json.html">
-  </head>
-  <body unresolved>
-    <p>An example of <code>&lt;ix-bbq&gt; web component</code>:</p>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>ix-bbq Demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../ix-bbq.html">
+  <link rel="import" href="../../dev-json/dev-json.html">
+  <link rel="import" href="../../ix-console-log/ix-console-log.html">
+</head>
+
+<body unresolved>
+  <p>An example of
+    <code>&lt;ix-bbq&gt; web component</code>:</p>
+
+  <template is="dom-bind" id="app">
     <ix-bbq answer="{{data}}" debug="true">
     </ix-bbq>
 
     <h1>Answer from Michiel Berger's BBQ service</h1>
-    <dev-json title="ix-bbq data" json="[[data]]"></dev-json>
-  </body>
+    <dev-json title="Is het BBQ weer?" json="[[data]]" log="true"></dev-json>
+    <ix-console-log title="Is het BBQ weer?" , object='[[data]]'></ix-console-log>
+  </template>
+</body>
+
 </html>
